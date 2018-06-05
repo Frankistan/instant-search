@@ -1,0 +1,21 @@
+<h1>Post Search</h1>
+
+<form [formGroup]="searchForm" novalidate>
+    <input placeholder="Search..." type="text" formControlName="searchInput" name="searchInput" minlength="3">
+    <div *ngIf="searchForm.invalid && (searchForm.dirty || searchForm.touched)" class="alert alert-danger">
+        <div *ngIf="searchForm.controls.searchInput.minlength">
+            Name must be at least 4 characters long.
+        </div>
+    </div>
+</form>
+
+<ul>
+    <li *ngFor="let post of posts$|async;let i = index;">
+        {{ post.createdAt | date : 'dd/MMM/yyyy hh:mm' }} - {{ post.title }}
+    </li>
+</ul>
+
+
+<div *ngIf="(posts$|async)?.length < 1">
+    <p>Sorry, no posts found</p>
+</div>
