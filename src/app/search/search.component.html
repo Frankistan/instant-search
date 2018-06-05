@@ -1,10 +1,10 @@
 <h1>Post Search</h1>
 
 <form [formGroup]="searchForm" novalidate>
-    <input placeholder="Search..." type="text" formControlName="searchInput" name="searchInput" minlength="3">
-    <div *ngIf="searchForm.invalid && (searchForm.dirty || searchForm.touched)" class="alert alert-danger">
-        <div *ngIf="searchForm.controls.searchInput.minlength">
-            Name must be at least 4 characters long.
+    <input placeholder="Search..." type="text" formControlName="searchInput" name="searchInput" >
+    <div *ngIf="searchForm.invalid && (searchForm.dirty || searchForm.touched)" style="color:red">
+        <div *ngIf="searchForm.get('searchInput').hasError('minlength') && searchForm.get('searchInput').touched">
+            Search text must be at least 3 characters long.
         </div>
     </div>
 </form>
